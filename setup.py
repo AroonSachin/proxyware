@@ -6,7 +6,8 @@ setup(
     packages=find_packages(where='src'),  # Specify the source directory
     package_dir={'': 'src'},  # Tell setuptools that packages are under src
     install_requires=[
-        'mitmproxy',  # Add any other dependencies your tool needs
+        'mitmproxy',
+        'paramiko',  # Add any other dependencies your tool needs
     ],
     entry_points={
         'console_scripts': [
