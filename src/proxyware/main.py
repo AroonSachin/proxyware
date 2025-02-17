@@ -20,7 +20,7 @@ def parse_args():
     
     parser.add_argument(
         "--host", 
-        type=str, 
+        action='store', 
         default="127.0.0.1", 
         required=True, 
         help="The host IP address to listen on. Default is 127.0.0.1 (localhost)."
@@ -28,7 +28,7 @@ def parse_args():
     
     parser.add_argument(
         "--port", 
-        type=int, 
+        action='store', 
         default=8080, 
         required=True, 
         help="The port to listen on. Default is 8080."
@@ -108,7 +108,7 @@ def main():
     show_stored_calls()
     # Start mitmproxy with the script
     from mitmproxy.tools.main import mitmproxy
-    mitmproxy(["-s", "src/main.py", '--listen-host',host,"--listen-port", str(port),"--mode", "transparent"])
+    mitmproxy(["-s", "src/proxyware/main.py", '--listen-host',host,"--listen-port", str(port),"--mode", "transparent"])
 
 if __name__ == "__main__":
     main()

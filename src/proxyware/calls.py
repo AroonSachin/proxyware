@@ -1,6 +1,6 @@
 import mitmproxy.http
 from venv import logger
-from main import intercepted_calls
+from src.proxyware.main import intercepted_calls
 
 def request(flow: mitmproxy.http.HTTPFlow):
     """
@@ -20,7 +20,7 @@ def request(flow: mitmproxy.http.HTTPFlow):
 
     # Example: Modify the request (if needed)
     # flow.request.headers["User-Agent"] = "Modified User-Agent"
-    pass
+    # pass
 
 def response(flow: mitmproxy.http.HTTPFlow):
     """

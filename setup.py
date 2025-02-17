@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-
 setup(
     name='proxyware',
     version='0.1',
@@ -13,12 +12,12 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'proxyware=main:main',  # Adjust this if your main function is named differently
+            'proxyware=proxyware.main:main',  # Adjust this if your main function is named differently
         ],
     },
     description='A CLI tool to intercept, edit, and send HTTP/S requests and responses.',
     author='Arun Sachin',
-    author_email='drasticarun1015@gamil.com',
+    author_email='aroonfendi@gamil.com',
     url='https://github.com/AroonSachin/proxyware',  # Replace with your repository URL
     classifiers=[
         'Programming Language :: Python :: 3',
