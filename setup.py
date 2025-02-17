@@ -5,13 +5,15 @@ setup(
     version='0.1',
     packages=find_packages(where='src'),  # Specify the source directory
     package_dir={'': 'src'},  # Tell setuptools that packages are under src
+    # packages=find_packages()
     install_requires=[
         'mitmproxy',
-        'paramiko',  # Add any other dependencies your tool needs
+        'paramiko', 
+        "bcrypt==4.0.1"
     ],
     entry_points={
         'console_scripts': [
-            'proxyware=http_interceptor:main',  # Adjust this if your main function is named differently
+            'proxyware=main:main',  # Adjust this if your main function is named differently
         ],
     },
     description='A CLI tool to intercept, edit, and send HTTP/S requests and responses.',
