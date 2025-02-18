@@ -2,11 +2,7 @@
 import argparse
 from utils.certificategenerator.certificatinator import install_ca_certificate_remote,generate_ca_certificate,transfer_ca_certificate
 from pathlib import Path
-
-
-
-# List to store intercepted requests and responses
-intercepted_calls = []
+from proxyware.calls import InterceptEditProxy
 
 # class InterceptEditProxy:
 #     def __init__(self):
@@ -59,20 +55,6 @@ def parse_args():
     return parser.parse_args()
 
 
-@staticmethod
-def show_stored_calls():
-    """
-    Display stored requests and responses.
-    """
-    print("\nStored HTTP Calls:")
-    for i, call in enumerate(intercepted_calls):
-        print(f"{i+1}. Request URL: {call['request']['url']}")
-        if call['response']:
-            print(f"   Response Status: {call['response']['status_code']}")
-            print(f"   Response Body (truncated): {call['response']['body'][:100]}")
-        else:
-            print("   Response: Not yet received.")
-
 def main():
     """
     The main entry point for the proxy server.
@@ -101,14 +83,15 @@ def main():
         install_ca_certificate_remote(remote_ip, remote_user, remote_password)
 
     # Initialize the proxy server with the InterceptEditProxy addon
-    # addons = [InterceptEditProxy()]
+    print("Addons added to MITM")
+    addons = [InterceptEditProxy()]
     
     # Show stored HTTP calls (optional)
-    # InterceptEditProxy().show_stored_calls()
-    show_stored_calls()
+    InterceptEditProxy().show_stored_calls()
+    # show_stored_calls()
     # Start mitmproxy with the script
     from mitmproxy.tools.main import mitmproxy
-    mitmproxy(["-s", "src/proxyware/main.py", '--listen-host',host,"--listen-port", str(port),"--mode", "transparent"])
+    mitmproxy(["-s","src/proxyware/main.py", '--listen-host',host,"--listen-port",str(port),"--mode","transparent"])
 
 if __name__ == "__main__":
     main()
