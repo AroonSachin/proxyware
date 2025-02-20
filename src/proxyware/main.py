@@ -91,7 +91,7 @@ def main():
     # show_stored_calls()
     # Start mitmproxy with the script
     from mitmproxy.tools.main import mitmproxy
-    mitmproxy(["-s","src/proxyware/main.py", '--listen-host',host,"--listen-port",str(port),"--mode","transparent"])
+    mitmproxy(["-s","src/proxyware/main.py", '--listen-host',host,"--listen-port",str(port), "--mode", "transparent", "--verbose", "--set", "logfile=logfile.log"])
 
 if __name__ == "__main__":
     main()
